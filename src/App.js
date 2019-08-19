@@ -15,19 +15,8 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const todos = await axios.get("/todos.json");
-    const result = [];
-
-    if (todos.data)
-      Object.keys(todos.data).forEach(key => {
-        const todo = todos.data[key];
-        todo.id = key;
-        result.push(todo);
-      });
-
-    this.setState({
-      todos: result
-    });
+    const result = await axios.get("/todos");
+    this.setState({todos: result.data});
   }
 
   addTodo = async todo => {
@@ -36,8 +25,8 @@ class App extends Component {
       finished: false,
       createdAt: moment().format("DD.MM.YYYY")
     };
-    const result = await axios.post("/todos.json", newTodo);
-    newTodo.id = result.data.name;
+    const result = await axios.post("/todos", newTodo);
+    newTodo.id = result.data;
 
     this.setState(prevState => {
       return {
