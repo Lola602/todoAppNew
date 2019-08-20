@@ -5,56 +5,56 @@ import findIndex from "lodash/findIndex";
 
 import axios from "./axios";
 
-import AddTodo from "./views/AddTodo";
-import TodoList from "./views/TodoList";
+import AddFilm from "./views/AddFilm";
+import FilmList from "./views/FilmList";
 import Navbar from "./components/Navbar";
 
 class App extends Component {
   state = {
-    todos: []
+    films: []
   };
 
   async componentDidMount() {
     const result = await axios.get("/todos");
-    this.setState({todos: result.data});
+    this.setState({films: result.data});
   }
 
-  addTodo = async todo => {
-    const newTodo = {
-      ...todo,
-      finished: false,
+  addFilm = async film => {
+    const newFilm = {
+      ...film,
+      showed: false,
       createdAt: moment().format("DD.MM.YYYY")
     };
-    const result = await axios.post("/todos", newTodo);
-    newTodo.id = result.data;
+    const result = await axios.post("/films", newFilm);
+    newFilm.id = result.data;
 
     this.setState(prevState => {
       return {
-        todos: prevState.todos.concat(newTodo)
+        films: prevState.films.concat(newFilm)
       };
     });
   };
 
-  editTodo = (todo) => {
-    const index = findIndex(this.state.todos, { id: todo.id })
-    const todos = [...this.state.todos];
-    todos.splice(index, 1, todo);
+  editFilm = (film) => {
+    const index = findIndex(this.state.films, { id: film.id })
+    const films = [...this.state.films];
+    films.splice(index, 1, film);
     this.setState({
-      todos: todos
+      films: films
     });
   };
 
-  removeTodo = (todo) => {
-    const index = findIndex(this.state.todos, { id: todo.id })
-    const todos = [...this.state.todos];
-    todos.splice(index, 1);
+  removeFilm = (film) => {
+    const index = findIndex(this.state.films, { id: film.id })
+    const films = [...this.state.films];
+    films.splice(index, 1);
     this.setState({
-      todos: todos
+      films: films
     });
   };
 
   render() {
-    const todos = this.state.todos;
+    const films = this.state.films;
     return (
       <HashRouter>
         <div className="App">
@@ -66,16 +66,16 @@ class App extends Component {
               path="/"
               exact
               render={() => (
-                <TodoList
-                  todos={todos}
-                  onEdit={this.editTodo}
-                  onRemove={this.removeTodo}
+                <FilmList
+                  films={films}
+                  onEdit={this.editFilm}
+                  onRemove={this.removeFilm}
                 />
               )}
             />
             <Route
               path="/add"
-              render={() => <AddTodo onAdd={this.addTodo} />}
+              render={() => <AddFilm onAdd={this.addFilm} />}
             />
           </Switch>
           </div>
