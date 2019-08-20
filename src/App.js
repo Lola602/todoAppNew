@@ -25,9 +25,8 @@ class App extends Component {
       showed: false,
       createdAt: moment().format("DD.MM.YYYY")
     };
-    console.log(newTodo);
-    const result = await axios.post("/todos", newTodo);
-    newTodo.id = result.data;
+    //const result = await axios.post("/todos", newTodo);
+    //newTodo.id = result.data;
 
     this.setState(prevState => {
       return {

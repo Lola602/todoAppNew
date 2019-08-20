@@ -28,7 +28,7 @@ class Todo extends Component {
 
   render() {
     const { createdAt, title, showed, state, year, length, imgUrl } = this.props.todo;
-    let classes = 'card mb-3';
+    let classes = 'film card mb-3';
     if (showed) classes += ' border-success';
 
     return (

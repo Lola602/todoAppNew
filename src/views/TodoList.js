@@ -8,7 +8,7 @@ class TodoList extends Component {
     const todos = this.props.todos;
     
     return (
-      <Masonry className="todos">
+      <Masonry className="films">
         {todos.map((todoData) => {
           const handleShowTodo = () => {
             todoData.showed = true;
