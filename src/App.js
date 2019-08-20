@@ -22,9 +22,10 @@ class App extends Component {
   addTodo = async todo => {
     const newTodo = {
       ...todo,
-      finished: false,
+      showed: false,
       createdAt: moment().format("DD.MM.YYYY")
     };
+    console.log(newTodo);
     const result = await axios.post("/todos", newTodo);
     newTodo.id = result.data;
 

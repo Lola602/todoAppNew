@@ -10,8 +10,8 @@ class TodoList extends Component {
     return (
       <Masonry className="todos">
         {todos.map((todoData) => {
-          const handleFinishTodo = () => {
-            todoData.finished = true;
+          const handleShowTodo = () => {
+            todoData.showed = true;
             this.props.onEdit(todoData);
           };
 
@@ -23,7 +23,7 @@ class TodoList extends Component {
             <Todo
               todo={todoData}
               key={todoData.id}
-              onFinish={handleFinishTodo}
+              onShow={handleShowTodo}
               onRemove={handleRemoveTodo}
             />
           );
