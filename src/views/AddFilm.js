@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-class AddTodo extends Component {
+class AddFilm extends Component {
   state = {
     imgUrl: '',
     title: '',
@@ -117,4 +117,4 @@ class AddTodo extends Component {
   }
 }
 
-export default withRouter(AddTodo);
+export default withRouter(AddFilm);

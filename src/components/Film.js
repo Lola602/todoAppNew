@@ -2,11 +2,11 @@ import React, { Component } from "react";
 
 import axios from '../axios';
 
-import TodoButtons from './TodoButtons';
+import FilmButtons from './FilmButtons';
 
-class Todo extends Component {
+class Film extends Component {
   renderDescription = () => {
-    const { description } = this.props.todo;
+    const { description } = this.props.film;
     if (!description) return null;
 
     return (
@@ -15,19 +15,19 @@ class Todo extends Component {
   };
 
   handleShow = async () => {
-    await axios.patch('/todos/' + this.props.todo.id, {
+    await axios.patch('/films/' + this.props.film.id, {
       showed: true
     });
     this.props.onShow();
   };
 
   handleRemove = async () => {
-    await axios.delete('/todos/' + this.props.todo.id);
+    await axios.delete('/films/' + this.props.film.id);
     this.props.onRemove();
   };
 
   render() {
-    const { createdAt, title, showed, state, year, length, imgUrl } = this.props.todo;
+    const { createdAt, title, showed, state, year, length, imgUrl } = this.props.film;
     let classes = 'film card mb-3';
     if (showed) classes += ' border-success';
 
@@ -45,7 +45,7 @@ class Todo extends Component {
               <p className="card-text">{length}</p>
               <div className="card-text">{this.renderDescription()}</div>
               <p className="card-text"><small className="text-muted">Created at {createdAt}</small></p>
-              <TodoButtons todo={this.props.todo} onShow={this.handleShow} onRemove={this.handleRemove} />
+              <FilmButtons film={this.props.film} onShow={this.handleShow} onRemove={this.handleRemove} />
             </div>
           </div>
         </div>
@@ -54,4 +54,4 @@ class Todo extends Component {
   }
 }
 
-export default Todo;
+export default Film;
