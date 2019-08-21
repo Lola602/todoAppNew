@@ -3,13 +3,12 @@ import React, { Component } from 'react';
 class FilmButtons extends Component {
   render () {
     const { showed } = this.props.film;
-    let showButton;
-    if (!showed) {
-      showButton = (
-        <button type="button" className="btn btn-success float-right" onClick={this.props.onShow}>
-          Show/Hide
-        </button>
-      ) 
+    console.log(showed);
+    let label;
+    if(!showed) {
+      label = (<label className="custom-control-label" htmlFor="customSwitch1">Not visible</label>);
+    } else {
+      label = (<label className="custom-control-label" htmlFor="customSwitch1">Visible</label>);
     }
 
     return (
@@ -17,7 +16,10 @@ class FilmButtons extends Component {
         <button type="button" className="btn btn-light" onClick={this.props.onRemove}>
           Delete
         </button>
-        {showButton}
+        <div className="custom-control custom-switch">
+          <input type="checkbox" className="custom-control-input" id="customSwitch1" checked={showed} onChange={this.props.onShow} />
+          {label}
+        </div>
       </>
     )
   }

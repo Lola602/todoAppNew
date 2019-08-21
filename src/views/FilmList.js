@@ -11,7 +11,7 @@ class FilmList extends Component {
       <Masonry className="films">
         {films.map((filmData) => {
           const handleShowFilm = () => {
-            filmData.showed = true;
+            filmData.showed === true ? filmData.showed = false : filmData.showed = true;
             this.props.onEdit(filmData);
           };
 

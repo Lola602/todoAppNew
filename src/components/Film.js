@@ -15,9 +15,16 @@ class Film extends Component {
   };
 
   handleShow = async () => {
-    await axios.patch('/films/' + this.props.film.id, {
-      showed: true
-    });
+    const { showed } = this.props.film;
+    if( showed === true ) {
+      await axios.patch('/films/' + this.props.film.id, {
+        showed: false
+      });
+    } else {
+      await axios.patch('/films/' + this.props.film.id, {
+        showed: true
+      });
+    }
     this.props.onShow();
   };
 
@@ -29,7 +36,7 @@ class Film extends Component {
   render() {
     const { createdAt, title, showed, state, year, length, imgUrl } = this.props.film;
     let classes = 'film card mb-3';
-    if (showed) classes += ' border-success';
+    if (!showed) classes += ' cardDisabled';
 
     return (
       <div className={classes} style={{maxWidth: 540}}>
