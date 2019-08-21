@@ -17,11 +17,11 @@ class Film extends Component {
   handleShow = async () => {
     const { showed } = this.props.film;
     if( showed === true ) {
-      await axios.patch('/films/' + this.props.film.id, {
+      await axios.patch('/film/' + this.props.film.id, {
         showed: false
       });
     } else {
-      await axios.patch('/films/' + this.props.film.id, {
+      await axios.patch('/film/' + this.props.film.id, {
         showed: true
       });
     }
@@ -29,7 +29,7 @@ class Film extends Component {
   };
 
   handleRemove = async () => {
-    await axios.delete('/films/' + this.props.film.id);
+    await axios.delete('/film/' + this.props.film.id);
     this.props.onRemove();
   };
 
