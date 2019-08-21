@@ -4,6 +4,16 @@ import Masonry from 'react-masonry-component';
 import Film from "../components/Film";
 
 class FilmList extends Component {
+
+  state = {
+    searchTerm: ''
+  };
+
+  //react event listener
+  handleSearchTermChange = event => {
+    this.setState({ searchTerm: event.target.value })
+  };
+
   render() {
     const films = this.props.films;
     
@@ -20,13 +30,22 @@ class FilmList extends Component {
           };
 
           return (
-            <Film
-              film={filmData}
-              key={filmData.id}
-              onShow={handleShowFilm}
-              onRemove={handleRemoveFilm}
-            />
-          );
+            <>
+              <form className="form-inline my-2 my-lg-0 search">
+                <input className="form-control mr-sm-2 searchInput" type="search" placeholder="Search"
+                       aria-label="Search" onChange={this.handleSearchTermChange} value={this.state.searchTerm} />
+              </form>
+
+              {films.filter(film => `${film.title} ${film.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0).map(film =>
+                <Film
+                  film={filmData}
+                  key={filmData.id}
+                  onShow={handleShowFilm}
+                  onRemove={handleRemoveFilm}
+                />)
+              }
+            </>
+          )
         })}
       </Masonry>
     );

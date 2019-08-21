@@ -11,3 +11,8 @@
 .cardDisabled {
   background: #efefef;
 }
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
