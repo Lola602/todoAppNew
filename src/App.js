@@ -11,7 +11,8 @@ import Navbar from "./components/Navbar";
 
 class App extends Component {
   state = {
-    films: []
+    films: [],
+    searchTerm: ''
   };
 
   async componentDidMount() {
@@ -53,12 +54,17 @@ class App extends Component {
     });
   };
 
+  //react event listener
+  handleSearchTermChange = event => {
+    this.setState({ searchTerm: event.target.value })
+  };
+
   render() {
     const films = this.state.films;
     return (
       <HashRouter>
         <div className="App">
-          <Navbar />
+          <Navbar searchTerm={this.state.searchTerm} onSearch={this.handleSearchTermChange} />
 
           <div className="p-3">
           <Switch>
@@ -70,6 +76,7 @@ class App extends Component {
                   films={films}
                   onEdit={this.editFilm}
                   onRemove={this.removeFilm}
+                  searchTerm={this.state.searchTerm}
                 />
               )}
             />

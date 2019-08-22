@@ -5,18 +5,9 @@ import Film from "../components/Film";
 
 class FilmList extends Component {
 
-  state = {
-    searchTerm: ''
-  };
-
-  //react event listener
-  handleSearchTermChange = event => {
-    this.setState({ searchTerm: event.target.value })
-  };
-
   render() {
     const films = this.props.films;
-    
+    const { searchTerm } = this.props;
     return (
       <Masonry className="films">
         {films.map((filmData) => {
@@ -31,12 +22,8 @@ class FilmList extends Component {
 
           return (
             <>
-              <form className="form-inline my-2 my-lg-0 search">
-                <input className="form-control mr-sm-2 searchInput" type="search" placeholder="Search"
-                       aria-label="Search" onChange={this.handleSearchTermChange} value={this.state.searchTerm} />
-              </form>
 
-              {films.filter(film => `${film.title} ${film.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0).map(film =>
+              {films.filter(film => `${film.title} ${film.description}`.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0).map(film =>
                 <Film
                   film={filmData}
                   key={filmData.id}
