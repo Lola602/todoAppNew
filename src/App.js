@@ -16,8 +16,8 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    //const result = await axios.get("/films");
-    //this.setState({films: result.data});
+    const result = await axios.get("/film");
+    this.setState({films: result.data});
   }
 
   addFilm = async film => {
@@ -26,8 +26,8 @@ class App extends Component {
       showed: false,
       createdAt: moment().format("DD.MM.YYYY")
     };
-    //const result = await axios.post("/films", newFilm);
-    //newFilm.id = result.data;
+    const result = await axios.post("/film", newFilm);
+    newFilm.id = result.data;
 
     this.setState(prevState => {
       return {
