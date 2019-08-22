@@ -64,29 +64,39 @@ class App extends Component {
     return (
       <HashRouter>
         <div className="App">
-          <Navbar searchTerm={this.state.searchTerm} onSearch={this.handleSearchTermChange} />
-
-          <div className="p-3">
           <Switch>
             <Route
               path="/"
               exact
               render={() => (
-                <FilmList
-                  films={films}
-                  onEdit={this.editFilm}
-                  onRemove={this.removeFilm}
-                  searchTerm={this.state.searchTerm}
-                />
+                <>
+                  <Navbar showSearch searchTerm={this.state.searchTerm} onSearch={this.handleSearchTermChange} />
+                  <div className="p-3">
+                    <FilmList
+                      films={films}
+                      onEdit={this.editFilm}
+                      onRemove={this.removeFilm}
+                      searchTerm={this.state.searchTerm}
+                    />
+                  </div>
+                </>
               )}
             />
             <Route
               path="/add"
-              render={() => <AddFilm onAdd={this.addFilm} />}
+              render={() => (
+              <>
+                <Navbar searchTerm={this.state.searchTerm} onSearch={this.handleSearchTermChange} />
+                <div className="p-3">
+                  <AddFilm
+                    onAdd={this.addFilm}
+                  />
+                </div>
+              </>
+              )}
             />
           </Switch>
           </div>
-        </div>
       </HashRouter>
     );
   }
