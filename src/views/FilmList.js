@@ -11,6 +11,14 @@ class FilmList extends Component {
 
 
     return (
+        <div>
+       <Masonry>
+        <Link className="link-plus card plus todo mb-2" to="/add">
+          <GoPlus className="plus" />
+          Add new todo
+        </Link>
+       </Masonry>
+
       <Masonry className="films">
         {films.map((filmData) => {
           const handleShowFilm = () => {
@@ -24,10 +32,8 @@ class FilmList extends Component {
 
           return (
               <div>
-              <Link className="link-plus card plus todo mb-2" to="/add">
-                <GoPlus className="plusko" />
-                Add new todo
-              </Link>
+
+
 
               <Film
               film={filmData}
@@ -40,6 +46,8 @@ class FilmList extends Component {
           );
         })}
       </Masonry>
+        </div>
+
     );
   }
 }
