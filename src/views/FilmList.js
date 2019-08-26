@@ -22,8 +22,7 @@ class FilmList extends Component {
 
           return (
             <>
-
-              {films.filter(film => `${film.title} ${film.description}`.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0).map(film =>
+              {films.filter(filmData => `${filmData.title} ${filmData.description}`.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0).map(filmData =>
                 <Film
                   film={filmData}
                   key={filmData.id}
