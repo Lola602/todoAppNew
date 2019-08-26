@@ -2,12 +2,16 @@ import React, { Component } from "react";
 
 class FilmDetail extends Component {
     render() {
-      const { title } = this.props.film;
+      const { title, year, description, trailer } = this.props.film;
       return (
       <>
-        <p>{title}</p>
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+        <div className="flex">
+            <h1>{title}</h1>
+            <p>{year}</p>
+          <p>{description}</p>
+        </div>
+        <div className="embed-responsive embed-responsive-16by9">
+          <iframe className="embed-responsive-item" src={trailer} allowFullScreen></iframe>
         </div>
       </>
       )

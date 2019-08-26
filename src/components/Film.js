@@ -40,7 +40,6 @@ class Film extends Component {
     if (!showed) classes += ' cardDisabled';
 
     return (
-      <Link to={`/film-detail/${id}`}>
         <div className={classes} style={{maxWidth: 540}}>
           <div className="row no-gutters">
             <div className="col-md-4">
@@ -48,7 +47,9 @@ class Film extends Component {
             </div>
             <div className="col-md-8">
               <div className="card-body">
-                <h5 className="card-title">{title}</h5>
+                <Link to={`/film-detail/${id}`}>
+                  <h5 className="card-title">{title}</h5>
+                </Link>
                 <p className="card-text">{state}</p>
                 <p className="card-text">{year}</p>
                 <p className="card-text">{length}</p>
@@ -59,7 +60,6 @@ class Film extends Component {
             </div>
           </div>
         </div>
-      </Link>
     );
   }
 }
