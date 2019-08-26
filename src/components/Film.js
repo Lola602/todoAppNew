@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-
+import moment from "moment";
 import axios from '../axios';
-
 import FilmButtons from './FilmButtons';
 
 class Film extends Component {
@@ -11,6 +10,15 @@ class Film extends Component {
     let classes = 'film card mb-3';
     if (!showed) classes += ' cardDisabled';
 
+// badge
+    let now = moment();
+    let createdAtMoment = moment(createdAt);
+    let difference = now.diff(createdAtMoment, "minutes");
+    const badge = (difference < 10) ?
+        <span className="badge badge-danger" style={{ margin: "1em"}}>
+          New
+        </span> :null;
+
     return (
       <div className={classes} style={{maxWidth: 540}}>
         <div className="row no-gutters">
@@ -19,7 +27,7 @@ class Film extends Component {
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title">{title}</h5>
+              <h5 className="card-title">{title}{badge}</h5>
               <p className="card-text">{state}</p>
               <p className="card-text">{year}</p>
               <p className="card-text">{length}</p>
