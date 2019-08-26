@@ -5,33 +5,6 @@ import axios from '../axios';
 import FilmButtons from './FilmButtons';
 
 class Film extends Component {
-  renderDescription = () => {
-    const { description } = this.props.film;
-    if (!description) return null;
-
-    return (
-      <div className="card-text" dangerouslySetInnerHTML={{ __html: description }} />
-    )
-  };
-
-  handleShow = async () => {
-    const { showed } = this.props.film;
-    if( showed === true ) {
-      await axios.patch('/film/' + this.props.film.id, {
-        showed: false
-      });
-    } else {
-      await axios.patch('/film/' + this.props.film.id, {
-        showed: true
-      });
-    }
-    this.props.onShow();
-  };
-
-  handleRemove = async () => {
-    await axios.delete('/film/' + this.props.film.id);
-    this.props.onRemove();
-  };
 
   render() {
     const { createdAt, title, showed, state, year, length, imgUrl } = this.props.film;
@@ -52,6 +25,7 @@ class Film extends Component {
               <p className="card-text">{length}</p>
               <div className="card-text">{this.renderDescription()}</div>
               <p className="card-text"><small className="text-muted">Created at {createdAt}</small></p>
+              {console.log(this.props.film)}
               <FilmButtons film={this.props.film} onShow={this.handleShow} onRemove={this.handleRemove} />
             </div>
           </div>
@@ -59,6 +33,50 @@ class Film extends Component {
       </div>
     );
   }
+
+  renderDescription = () => {
+    const { description } = this.props.film;
+    if (!description) return null;
+
+    return (
+        <div className="card-text" dangerouslySetInnerHTML={{ __html: description }} />
+    )
+  };
+
+  handleShow = async () => {
+    console.log(this.props);
+    console.log(this.props.film);
+    console.log(this.props.film.id);
+    console.log('1');
+    const { showed } = this.props.film;
+    console.log(showed);
+    console.log('2');
+    if( showed === true ) {
+      console.log('3a');
+      await axios.patch('/film/' + this.props.film.id, {
+        showed: false
+      });
+      console.log('4a');
+    } else {
+      console.log('3b');
+      await axios.patch('/film/' + this.props.film.id, {
+        showed: true
+      });
+      console.log('4b');
+    }
+    console.log('5');
+    this.props.onShow();
+    console.log('6');
+  };
+
+  handleRemove = async () => {
+    console.log(this.props);
+    console.log(this.props.film);
+    console.log(this.props.film.id);
+    await axios.delete('/film/' + this.props.film.id);
+    this.props.onRemove();
+  };
+
 }
 
 export default Film;

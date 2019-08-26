@@ -13,11 +13,20 @@ class FilmButtons extends Component {
 
     return (
       <>
-        <button type="button" className="btn btn-light" onClick={this.props.onRemove}>
-          Delete
-        </button>
+          <div className="removeButton">
+              <button
+                  type="button"
+                  className="close"
+                  aria-label="Close"
+                  onClick={this.props.onRemove}
+              ><span aria-hidden="true">&times;</span>
+              </button>
+
+          </div>
         <div className="custom-control custom-switch">
-          <input type="checkbox" className="custom-control-input" id="customSwitch1" checked={showed} onChange={this.props.onShow} />
+          <input type="checkbox" className="custom-control-input"
+                 id="customSwitch1" checked={showed}
+                 onChange={this.props.onShow} />
           {label}
         </div>
       </>
