@@ -15,7 +15,7 @@ class FilmList extends Component {
        <Masonry>
         <Link className="link-plus card plus todo mb-2" to="/add">
           <GoPlus className="plus" />
-          Add new todo
+          Add new film
         </Link>
        </Masonry>
 
