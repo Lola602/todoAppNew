@@ -7,7 +7,9 @@ class FilmList extends Component {
 
   render() {
     const films = this.props.films;
+
     const { searchTerm } = this.props;
+
     return (
       <Masonry className="films">
         {films.map((filmData) => {
@@ -21,6 +23,7 @@ class FilmList extends Component {
           };
 
           return (
+
             <>
               {films.filter(filmData => `${filmData.title} ${filmData.description}`.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0).map(filmData =>
                 <Film
@@ -31,7 +34,7 @@ class FilmList extends Component {
                 />)
               }
             </>
-          )
+          );
         })}
       </Masonry>
     );
