@@ -15,8 +15,8 @@ class Film extends Component {
     let createdAtMoment = moment(createdAt);
     let difference = now.diff(createdAtMoment, "minutes");
     const badge = (difference < 10) ?
-        <span className="badge badge-danger" style={{ margin: "1em"}}>
-          New
+        <span className="badge badge-primary">
+          New film
         </span> :null;
 
     return (
