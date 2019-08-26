@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
 import moment from "moment";
 import findIndex from "lodash/findIndex";
+import type { Match } from 'react-router-dom';
 
 import axios from "./axios";
 
 import AddFilm from "./views/AddFilm";
 import FilmList from "./views/FilmList";
 import Navbar from "./components/Navbar";
+import Details from "./components/FilmDetail";
 
 class App extends Component {
   state = {
@@ -76,6 +78,13 @@ class App extends Component {
             <Route
               path="/add"
               render={() => <AddFilm onAdd={this.addFilm} />}
+            />
+            <Route
+              path="/film-detail/:id"
+              render={() =>
+              const selectedFilm = this.state.films.find((film) => props.match.params.id === film.id);
+              return <FilmDetail film={selectedFilm} />
+              }
             />
           </Switch>
           </div>
