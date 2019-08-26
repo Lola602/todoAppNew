@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 
 import axios from '../axios';
 
@@ -39,7 +40,7 @@ class Film extends Component {
     if (!showed) classes += ' cardDisabled';
 
     return (
-      <link to={`/film-detail/${id}`}>
+      <Link to={`/film-detail/${id}`}>
         <div className={classes} style={{maxWidth: 540}}>
           <div className="row no-gutters">
             <div className="col-md-4">
@@ -58,7 +59,7 @@ class Film extends Component {
             </div>
           </div>
         </div>
-      </link>
+      </Link>
     );
   }
 }

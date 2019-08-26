@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
 import moment from "moment";
 import findIndex from "lodash/findIndex";
-import type { Match } from 'react-router-dom';
 
 import axios from "./axios";
 
 import AddFilm from "./views/AddFilm";
 import FilmList from "./views/FilmList";
 import Navbar from "./components/Navbar";
-import Details from "./components/FilmDetail";
+import FilmDetail from "./components/FilmDetail";
 
 class App extends Component {
   state = {
@@ -55,6 +54,10 @@ class App extends Component {
     });
   };
 
+  selectFilm = (urlId) => {
+    return this.state.films.find((film) => urlId === film.id);
+  };
+
   render() {
     const films = this.state.films;
     return (
@@ -81,10 +84,7 @@ class App extends Component {
             />
             <Route
               path="/film-detail/:id"
-              render={() =>
-              const selectedFilm = this.state.films.find((film) => props.match.params.id === film.id);
-              return <FilmDetail film={selectedFilm} />
-              }
+              render={( {match} ) => <FilmDetail film={this.selectFilm(match.params.id)} />}
             />
           </Switch>
           </div>
