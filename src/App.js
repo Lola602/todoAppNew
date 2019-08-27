@@ -8,6 +8,7 @@ import axios from "./axios";
 import AddFilm from "./views/AddFilm";
 import FilmList from "./views/FilmList";
 import Navbar from "./components/Navbar";
+import FilmDetail from "./components/FilmDetail";
 
 class App extends Component {
   state = {
@@ -55,9 +56,13 @@ class App extends Component {
     });
   };
 
+  selectFilm = (urlId) => {
+    return this.state.films.find((film) => urlId === film.id);
+
   //react event listener
   handleSearchTermChange = event => {
     this.setState({ searchTerm: event.target.value })
+
   };
 
   render() {
@@ -95,6 +100,10 @@ class App extends Component {
                 </div>
               </>
               )}
+            />
+            <Route
+              path="/film-detail/:id"
+              render={( {match} ) => <FilmDetail film={this.selectFilm(match.params.id)} />}
             />
           </Switch>
           </div>

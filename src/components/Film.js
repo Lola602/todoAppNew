@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import moment from "moment";
 import axios from '../axios';
 import FilmButtons from './FilmButtons';
@@ -84,7 +85,6 @@ class Film extends Component {
     await axios.delete('/film/' + this.props.film.id);
     this.props.onRemove();
   };
-
 }
 
 export default Film;

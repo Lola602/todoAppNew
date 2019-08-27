@@ -9,7 +9,8 @@ class AddFilm extends Component {
     genre: 'drama',
     state: 'washington',
     year: '',
-    length: ''
+    length: '',
+    trailer: ''
   };
 
   handleSubmit = async event => {
@@ -22,7 +23,8 @@ class AddFilm extends Component {
       genre: 'drama',
       state: 'washington',
       year: '',
-      length: ''
+      length: '',
+      trailer: ''
     });
     this.props.history.push("/");
   };
@@ -35,7 +37,7 @@ class AddFilm extends Component {
   };
 
   render() {
-    const { imgUrl, title, description, genre, state, year, length } = this.state;
+    const { imgUrl, title, description, genre, state, year, length, trailer } = this.state;
 
     return (
 
@@ -104,6 +106,15 @@ class AddFilm extends Component {
           onChange={this.handleChange}
           className="form-control mb-2"
           placeholder="Length"
+          required
+        />
+        <input
+          name="trailer"
+          type="text"
+          value={trailer}
+          onChange={this.handleChange}
+          className="form-control mb-2"
+          placeholder="Trailer url"
           required
         />
         <button
