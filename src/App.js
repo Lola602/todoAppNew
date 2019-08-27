@@ -11,7 +11,8 @@ import Navbar from "./components/Navbar";
 
 class App extends Component {
   state = {
-    films: []
+    films: [],
+    searchTerm: ''
   };
 
   async componentDidMount() {
@@ -36,6 +37,7 @@ class App extends Component {
   };
 
   editFilm = (film) => {
+    //returns index of first element in the array that satisfies the provided testing function
     const index = findIndex(this.state.films, { id: film.id })
     const films = [...this.state.films];
     films.splice(index, 1, film);
@@ -53,33 +55,49 @@ class App extends Component {
     });
   };
 
+  //react event listener
+  handleSearchTermChange = event => {
+    this.setState({ searchTerm: event.target.value })
+  };
+
   render() {
     const films = this.state.films;
     return (
       <HashRouter>
         <div className="App">
-          <Navbar />
-
-          <div className="p-3">
           <Switch>
             <Route
               path="/"
               exact
               render={() => (
-                <FilmList
-                  films={films}
-                  onEdit={this.editFilm}
-                  onRemove={this.removeFilm}
-                />
+                <>
+                  <Navbar showSearch searchTerm={this.state.searchTerm} onSearch={this.handleSearchTermChange} />
+                  <div className="p-3">
+                    <FilmList
+                      films={films}
+                      onEdit={this.editFilm}
+                      onRemove={this.removeFilm}
+                      searchTerm={this.state.searchTerm}
+                    />
+                  </div>
+                </>
               )}
             />
             <Route
               path="/add"
-              render={() => <AddFilm onAdd={this.addFilm} />}
+              render={() => (
+              <>
+                <Navbar searchTerm={this.state.searchTerm} onSearch={this.handleSearchTermChange} />
+                <div className="p-3">
+                  <AddFilm
+                    onAdd={this.addFilm}
+                  />
+                </div>
+              </>
+              )}
             />
           </Switch>
           </div>
-        </div>
       </HashRouter>
     );
   }

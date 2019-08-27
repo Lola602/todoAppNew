@@ -4,7 +4,6 @@ import axios from '../axios';
 import FilmButtons from './FilmButtons';
 
 class Film extends Component {
-
   render() {
     const { createdAt, title, showed, state, year, length, imgUrl } = this.props.film;
     let classes = 'film card mb-3';

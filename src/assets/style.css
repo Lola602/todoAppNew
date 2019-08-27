@@ -12,6 +12,11 @@
   background: #efefef;
 }
 
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
 .removeButton {
   position: absolute;
   top: 5px;
@@ -27,4 +32,5 @@
 .badge {
   margin: 1em
 }
+
 
