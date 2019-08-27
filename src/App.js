@@ -37,6 +37,7 @@ class App extends Component {
   };
 
   editFilm = (film) => {
+    //returns index of first element in the array that satisfies the provided testing function
     const index = findIndex(this.state.films, { id: film.id })
     const films = [...this.state.films];
     films.splice(index, 1, film);

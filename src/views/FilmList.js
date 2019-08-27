@@ -12,7 +12,7 @@ class FilmList extends Component {
 
     return (
       <Masonry className="films">
-        {films.map((filmData) => {
+        {films.filter(filmData => `${filmData.title} ${filmData.description}`.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0).map((filmData) => {
           const handleShowFilm = () => {
             filmData.showed === true ? filmData.showed = false : filmData.showed = true;
             this.props.onEdit(filmData);
@@ -25,14 +25,12 @@ class FilmList extends Component {
           return (
 
             <>
-              {films.filter(filmData => `${filmData.title} ${filmData.description}`.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0).map(filmData =>
                 <Film
                   film={filmData}
                   key={filmData.id}
                   onShow={handleShowFilm}
                   onRemove={handleRemoveFilm}
-                />)
-              }
+                />
             </>
           );
         })}
