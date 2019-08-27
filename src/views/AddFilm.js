@@ -38,6 +38,7 @@ class AddFilm extends Component {
     const { imgUrl, title, description, genre, state, year, length } = this.state;
 
     return (
+
       <form onSubmit={this.handleSubmit}>
         <input
           name="imgUrl"
