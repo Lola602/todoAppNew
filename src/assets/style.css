@@ -33,4 +33,13 @@
   margin: 1em
 }
 
+.card-img-bottom {
+  height: 23rem;
+  background: center no-repeat;
+  background-size: cover;
+}
+
+.card-block{
+  padding: 1em;
+}
 

@@ -19,21 +19,22 @@ class Film extends Component {
         </span> :null;
 
     return (
-      <div className={classes} style={{maxWidth: 540}}>
-        <div className="row no-gutters">
-          <div className="col-md-4">
-            <img src={imgUrl} className="card-img" alt={`${title} film`} />
-          </div>
-          <div className="col-md-8">
-            <div className="card-body">
-              <h5 className="card-title">{title}{badge}</h5>
-              <p className="card-text">{state}</p>
-              <p className="card-text">{year}</p>
-              <p className="card-text">{length}</p>
-              <div className="card-text">{this.renderDescription()}</div>
-              <p className="card-text"><small className="text-muted">Created at {createdAt}</small></p>
-              {console.log(this.props.film)}
-              <FilmButtons film={this.props.film} onShow={this.handleShow} onRemove={this.handleRemove} />
+      <div className={classes} style={{maxWidth: 560}}>
+        <div>
+          <div className="row no-gutters">
+            <div className="col-md-6 ">
+              <div className="card-block">
+                <h5 className="card-title">{title}</h5>
+                <p className="card-text">{state}</p>
+                <p className="card-text">{year}</p>
+                <p className="card-text">{length}</p>
+                <div className="card-text">{this.renderDescription()}</div>
+                <p className="card-text"><small className="text-muted">Created at {createdAt}</small></p>
+                <FilmButtons film={this.props.film} onShow={this.handleShow} onRemove={this.handleRemove} />
+              </div>
+            </div>
+            <div className = 'col-md-6'>
+              <img src={imgUrl} className="card-img-bottom" alt={`${title} film`} />
             </div>
           </div>
         </div>
