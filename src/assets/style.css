@@ -22,6 +22,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
+}
 
 .removeButton {
   position: absolute;
@@ -47,6 +48,5 @@
 
 .card-block{
   padding: 1em;
- 
 }
 
