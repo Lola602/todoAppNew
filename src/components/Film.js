@@ -6,7 +6,7 @@ import FilmButtons from './FilmButtons';
 
 class Film extends Component {
   render() {
-    const { createdAt, title, showed, state, year, length, imgUrl } = this.props.film;
+    const { createdAt, title, showed, state, year, length, imgUrl, id } = this.props.film;
     let classes = 'film card mb-3';
     if (!showed) classes += ' cardDisabled';
 
@@ -25,7 +25,9 @@ class Film extends Component {
           <div className="row no-gutters">
             <div className="col-md-6 ">
               <div className="card-block">
+                <Link to={`/film-detail/${id}`}>
                 <h5 className="card-title">{title}</h5>
+                </Link>
                 <p className="card-text">{state}</p>
                 <p className="card-text">{year}</p>
                 <p className="card-text">{length}</p>

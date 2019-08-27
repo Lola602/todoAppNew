@@ -58,6 +58,7 @@ class App extends Component {
 
   selectFilm = (urlId) => {
     return this.state.films.find((film) => urlId === film.id);
+  };
 
   //react event listener
   handleSearchTermChange = event => {
